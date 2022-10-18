@@ -27,7 +27,7 @@ public class ChoisesPage implements ActionListener {
     Clip clip;
     
 
-    ChoisesPage() throws Exception{
+    ChoisesPage() {
         dogbtn.setBounds(0, 200, 100, 25);
         dogbtn.setFocusable(false);
         dogbtn.addActionListener(this);
