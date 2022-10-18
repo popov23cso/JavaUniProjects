@@ -41,6 +41,7 @@ public class OhmCalculator implements ActionListener{
         frame.add(ohmsLabel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 420);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setVisible(true);
     }
