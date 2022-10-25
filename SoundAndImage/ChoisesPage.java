@@ -4,48 +4,45 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-import java.awt.event.*;
 import javax.swing.*;
 import javax.sound.sampled.*;
 import java.net.URL;
-import java.io.*;
 
 
 
 
 public class ChoisesPage implements ActionListener {
     JFrame frame = new JFrame();
-    JButton dogbtn = new JButton("Dawg");
-    JButton catbtn = new JButton("Kitty");
-    JButton stopbtn = new JButton("STOP");
+    JButton dogBtn = new JButton("Dawg");
+    JButton catBtn = new JButton("Kitty");
+    JButton stopBtn = new JButton("STOP");
     ImageIcon image = new ImageIcon("static/doggy.jpg");
-    JLabel showdog = new JLabel(image);
+    JLabel picture = new JLabel(image);
     URL file;
     AudioInputStream ais;
     Clip clip;
     
 
     ChoisesPage() {
-        dogbtn.setBounds(0, 200, 100, 25);
-        dogbtn.setFocusable(false);
-        dogbtn.addActionListener(this);
+        dogBtn.setBounds(0, 200, 100, 25);
+        dogBtn.setFocusable(false);
+        dogBtn.addActionListener(this);
 
-        catbtn.setBounds(310, 200, 100, 25);
-        catbtn.setFocusable(false);
-        catbtn.addActionListener(this);
+        catBtn.setBounds(310, 200, 100, 25);
+        catBtn.setFocusable(false);
+        catBtn.addActionListener(this);
 
-        stopbtn.setBounds(0, 0, 100, 25);
-        stopbtn.setFocusable(false);
-        stopbtn.addActionListener(this);
+        stopBtn.setBounds(0, 0, 100, 25);
+        stopBtn.setFocusable(false);
+        stopBtn.addActionListener(this);
 
-        showdog.setBounds(60, 10, 200, 200);
+        picture.setBounds(60, 10, 200, 200);
 
-        frame.add(dogbtn);
-        frame.add(catbtn);
-        frame.add(stopbtn);
-        frame.add(showdog);
+        frame.add(dogBtn);
+        frame.add(catBtn);
+        frame.add(stopBtn);
+        frame.add(picture);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 420);
         frame.setLocationRelativeTo(null);
@@ -55,14 +52,14 @@ public class ChoisesPage implements ActionListener {
 
     @Override 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == dogbtn){
+        if(e.getSource() == dogBtn){
             if (clip != null) {
                 clip.stop();
             }
             try{
                 changeSound("doggy");
                 image = new ImageIcon("static/doggy.jpg");
-                showdog.setIcon(image);
+                picture.setIcon(image);
             }
             catch(Exception w) {
                 return;
@@ -70,14 +67,14 @@ public class ChoisesPage implements ActionListener {
             clip.setFramePosition(0);
             clip.start();
         }
-        else if(e.getSource() == catbtn) {
+        else if(e.getSource() == catBtn) {
             if (clip != null) {
                 clip.stop();
             }
             try{
                 changeSound("kitty");
                 image = new ImageIcon("static/cat.jpg");
-                showdog.setIcon(image);
+                picture.setIcon(image);
             }
             catch(Exception w) {
                 return;
@@ -85,7 +82,7 @@ public class ChoisesPage implements ActionListener {
             clip.setFramePosition(0);
             clip.start();
         }
-        else if (e.getSource() == stopbtn) {
+        else if (e.getSource() == stopBtn) {
             if (clip != null) {
                 clip.stop();
             }
@@ -96,10 +93,12 @@ public class ChoisesPage implements ActionListener {
     }
 
 
-    private void changeSound(String mode) throws Exception {
-        file = new URL("file:static/" + mode + ".wav");
+    private void changeSound(String sound) throws Exception {
+        file = new URL("file:static/" + sound + ".wav");
         ais = AudioSystem.getAudioInputStream(file);
         clip = AudioSystem.getClip();
         clip.open(ais);
+        FloatControl adjustVolume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        adjustVolume.setValue(-20.0f);
     }
 }
