@@ -31,12 +31,20 @@ public class App {
                     System.out.println("Insert an user with the username:");
                     input.nextLine();
                     username = input.nextLine();
+                    if (username.length() < 1) {
+                        System.out.println("Username should be at least one character long!");
+                        continue;
+                    }
                     insertUser(conn, username);
                 }
                 else if (choice == 2) {
                     System.out.println("Delete an user with the username:");
                     input.nextLine();
                     username = input.nextLine();
+                    if (username.length() < 1) {
+                        System.out.println("Username should be at least one character long!");
+                        continue;
+                    }
                     deleteUser(conn, username);
                 }
                 else if (choice == 3) {
