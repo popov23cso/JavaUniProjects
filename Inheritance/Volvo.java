@@ -6,7 +6,7 @@ public class Volvo extends Vehicle {
 
     public void PrintVehicleInfo() {
         System.out.println("This volvo is model " + this.Name + ". It has " + this.DoorCount + 
-        " doors and its top speed is " + this.TopSpeed +" KM/h.");
+        " doors and its top speed is " + this.TopSpeed + " KM/h.");
     }
 
     public void PrintLicence() {
