@@ -11,12 +11,9 @@ public class Main {
         List<Vehicle> l = new ArrayList<Vehicle>();
         l.add(airbus);
         l.add(volvo);
+        l.forEach((v) -> PrintVehicle(v));
 
-        for(int i = 0; i < l.size(); i++) {
-            PrintVehicle(l.get(i));
-            System.out.println("");
-        }
-
+    
     }
 
 
