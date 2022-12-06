@@ -23,6 +23,7 @@ public class DBManager implements ActionListener{
 
     DBManager() {
         conn = new SQLiteConn();
+        
 
         messagelabel.setBounds(125, 250, 250, 35);
         messagelabel.setFont(new Font(null, Font.ITALIC, 25));
@@ -55,6 +56,11 @@ public class DBManager implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (conn.getStatus() != true) {
+            messagelabel.setText("DB connection has failed");
+            return;
+        }
+
         if(e.getSource() == DeleteBtn) {
             String username = usernameField.getText();
             if (username.length() <= 0) {
@@ -76,6 +82,11 @@ public class DBManager implements ActionListener{
             try {
                 PrintWriter pw = new PrintWriter("users.txt");
                 ResultSet users = conn.getUsers();
+                if (users == null) {
+                    messagelabel.setText("Saving failed");
+                    pw.close();
+                    return;
+                }
                 pw.print("");
                 try{
                     while(users.next()) {
@@ -87,6 +98,7 @@ public class DBManager implements ActionListener{
                     return;
                 }
                 pw.close();
+                messagelabel.setText("Users saved");
             }
             catch (FileNotFoundException ex) {
                 return;
