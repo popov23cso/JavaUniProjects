@@ -15,7 +15,6 @@ public class SQLiteConn {
         status = true;
     }
     catch (SQLException e) {
-            System.out.println("failed");
             status = false;
         }
     }
