@@ -1,18 +1,14 @@
-import java.util.HashMap;
 import java.awt.event.ActionListener;
-import java.beans.Statement;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class DBManager implements ActionListener{

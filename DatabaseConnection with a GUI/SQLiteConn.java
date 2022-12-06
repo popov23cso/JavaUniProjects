@@ -4,13 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import javax.naming.spi.DirStateFactory.Result;
-
-
-
 
 public class SQLiteConn {
     private Connection conn = null;
