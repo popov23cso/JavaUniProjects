@@ -5,17 +5,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class SQLiteConn {
     private Connection conn = null;
     public boolean status;
     SQLiteConn() {
-        try {
+    try {
         conn = DriverManager.getConnection("jdbc:sqlite:database/users.db");
         status = true;
-        }
-        catch (SQLException e) {
+    }
+    catch (SQLException e) {
+            System.out.println("failed");
             status = false;
         }
+    }
+
+    public boolean getStatus() {
+        return this.status;
     }
 
     public boolean insertUser(String username) {
@@ -52,9 +58,18 @@ public class SQLiteConn {
         ResultSet rs = state.executeQuery(query);
         return rs;
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e) {
             return null;
+        }
+    }
+    @Override
+
+    protected void finalize() {
+        try{
+            conn.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
